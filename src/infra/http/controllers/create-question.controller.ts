@@ -1,10 +1,9 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
-import { PrismaService } from '@/infra/database/prisma/prisma.service'
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenSchema } from '@/infra/auth/jwt.strategy'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
+import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),
@@ -14,9 +13,8 @@ const createQuestionBodySchema = z.object({
 type CreateQuestionBodySchema = z.infer<typeof createQuestionBodySchema>
 
 @Controller('/questions')
-@UseGuards(JwtAuthGuard)
 export class CreateQuestionController {
-  constructor(private prisma: PrismaService) {}
+  constructor(private createQuestion: CreateQuestionUseCase) {}
 
   @Post()
   async handle(
@@ -28,23 +26,15 @@ export class CreateQuestionController {
 
     const userId = user.sub
 
-    const slug = this.covertsToSlug(title)
-
-    await this.prisma.question.create({
-      data: {
-        title,
-        content,
-        authorId: userId,
-        slug,
-      },
+    const result = await this.createQuestion.execute({
+      title,
+      content,
+      authorId: userId,
+      attachmentsIds: [],
     })
-  }
 
-  private covertsToSlug(title: string) {
-    return title
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
+    if (result.isLeft()) {
+      throw new BadRequestException()
+    }
   }
 }

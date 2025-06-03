@@ -6,16 +6,27 @@ import { PrismaAnswerCommentsRepository } from './prisma/repositories/prisma-ans
 import { PrismaQuestionAttachmentsRepository } from './prisma/repositories/prisma-question-attachments-repository'
 import { PrismaQuestionCommentsRepository } from './prisma/repositories/prisma-question-comments-repository'
 import { PrismaQuestionsRepository } from './prisma/repositories/prisma-questions-repository'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { StudentsRepository } from '@/domain/forum/application/repositories/students-repository'
+import { PrismaStudentsRepository } from './prisma/repositories/prisma-students-repository'
 
 @Module({
   providers: [
     PrismaService,
+    {
+      provide: QuestionsRepository,
+      useClass: PrismaQuestionsRepository,
+    },
+
+    {
+      provide: StudentsRepository,
+      useClass: PrismaStudentsRepository,
+    },
     PrismaAnswerAttachmentsRepository,
     PrismaAnswersRepository,
     PrismaAnswerCommentsRepository,
     PrismaQuestionAttachmentsRepository,
     PrismaQuestionCommentsRepository,
-    PrismaQuestionsRepository,
   ],
   exports: [
     PrismaService,
@@ -24,7 +35,8 @@ import { PrismaQuestionsRepository } from './prisma/repositories/prisma-question
     PrismaAnswerCommentsRepository,
     PrismaQuestionAttachmentsRepository,
     PrismaQuestionCommentsRepository,
-    PrismaQuestionsRepository,
+    QuestionsRepository,
+    StudentsRepository,
   ],
 })
 export class DatabaseModule {}
