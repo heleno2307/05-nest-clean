@@ -1,11 +1,11 @@
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import {
-    Controller,
-    Query,
-    Get,
-    BadRequestException,
-    Param,
+  Controller,
+  Query,
+  Get,
+  BadRequestException,
+  Param,
 } from '@nestjs/common'
 
 import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/fetch-question-answers'

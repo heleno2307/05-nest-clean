@@ -1,9 +1,9 @@
 import {
-    BadRequestException,
-    Body,
-    Controller,
-    Param,
-    Post,
+  BadRequestException,
+  Body,
+  Controller,
+  Param,
+  Post,
 } from '@nestjs/common'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenSchema } from '@/infra/auth/jwt.strategy'

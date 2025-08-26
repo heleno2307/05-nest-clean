@@ -1,9 +1,9 @@
 import {
-    BadRequestException,
-    Controller,
-    Get,
-    Param,
-    Query,
+  BadRequestException,
+  Controller,
+  Get,
+  Param,
+  Query,
 } from '@nestjs/common'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'

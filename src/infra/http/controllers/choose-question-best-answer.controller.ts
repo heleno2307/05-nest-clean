@@ -1,9 +1,9 @@
 import {
-    BadRequestException,
-    Controller,
-    HttpCode,
-    Param,
-    Patch,
+  BadRequestException,
+  Controller,
+  HttpCode,
+  Param,
+  Patch,
 } from '@nestjs/common'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenSchema } from '@/infra/auth/jwt.strategy'

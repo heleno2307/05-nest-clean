@@ -1,10 +1,10 @@
 import {
-    BadRequestException,
-    Body,
-    Controller,
-    HttpCode,
-    Param,
-    Put,
+  BadRequestException,
+  Body,
+  Controller,
+  HttpCode,
+  Param,
+  Put,
 } from '@nestjs/common'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenSchema } from '@/infra/auth/jwt.strategy'
