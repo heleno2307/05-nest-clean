@@ -1,6 +1,5 @@
 import { Either, left, right } from '@/core/either'
 import { Injectable } from '@nestjs/common'
-import { StudentAlreadyExistsError } from './errors/student-already-exists-error'
 import { AttachmentsRepository } from '../repositories/attachments-repository'
 import { Attachment } from '../../enterprise/entities/attachment'
 import { InvalidAttachmentTypeError } from './errors/invalid-attachment-type'
@@ -13,7 +12,7 @@ interface UploadAndCreateAttachmentUseCaseRequest {
 }
 
 type UploadAndCreateAttachmentUseCaseResponse = Either<
-  StudentAlreadyExistsError,
+  InvalidAttachmentTypeError,
   {
     attachment: Attachment
   }
