@@ -23,7 +23,7 @@ export class PrismaAnswerMapper {
       questionId: answer.questionId.toString(),
       content: answer.content,
       createdAt: answer.createdAt,
-      updatedAt: answer.updatedAt,
+      updatedAt: answer.updatedAt as Date,
     }
   }
 }
