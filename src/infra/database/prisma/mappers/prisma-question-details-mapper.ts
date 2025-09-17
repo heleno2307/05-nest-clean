@@ -1,7 +1,7 @@
 import {
-    Question as PrismaQuestion,
-    User as PrismaUser,
-    Attachment as PrismaAttachment,
+  Question as PrismaQuestion,
+  User as PrismaUser,
+  Attachment as PrismaAttachment,
 } from '@prisma/client'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { QuestionDetails } from '@/domain/forum/enterprise/entities/value-objects/question-details'
