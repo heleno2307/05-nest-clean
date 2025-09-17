@@ -1,6 +1,6 @@
 import {
-    UploadParams,
-    Uploader,
+  UploadParams,
+  Uploader,
 } from '@/domain/forum/application/storage/uploader'
 import { randomUUID } from 'crypto'
 
