@@ -5,12 +5,6 @@ import {
   QuestionAttachmentProps,
 } from '@/domain/forum/enterprise/entities/question-attachment'
 
-import { faker } from '@faker-js/faker'
-
-import {
-  AttachmentProps,
-  Attachment,
-} from '@/domain/forum/enterprise/entities/attachment'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/infra/database/prisma/prisma.service'
 
@@ -28,22 +22,6 @@ export function makeQuestionAttachment(
   )
 
   return questionAttachment
-}
-
-export function makeAttachment(
-  override: Partial<AttachmentProps> = {},
-  id?: UniqueEntityID,
-) {
-  const attachment = Attachment.create(
-    {
-      title: faker.lorem.slug(),
-      url: faker.lorem.slug(),
-      ...override,
-    },
-    id,
-  )
-
-  return attachment
 }
 
 @Injectable()
